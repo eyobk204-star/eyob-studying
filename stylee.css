@@ -400,3 +400,65 @@ img {
   display: block;
   margin: 10px auto;
 }
+
+
+
+:root{
+  --max-desktop-width: 480px;
+  --mobile-max-width: 360px;
+  --radius: 12px;
+}
+
+.tiktok-wrapper{
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.tiktok-video{
+  width: 100%;
+  max-width: var(--max-desktop-width);
+  background: #000;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 9 / 16;
+  position: relative;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+@supports not (aspect-ratio: 9/16) {
+  .tiktok-video{
+    height: auto;
+    padding-top: 177.7778%;
+  }
+  .tiktok-video > video{
+    position: absolute;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+  }
+}
+
+.tiktok-video > video{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  background: #000;
+}
+
+@media (max-width: 380px) {
+  .tiktok-video{
+    max-width: var(--mobile-max-width);
+    border-radius: 8px;
+  }
+}
+
+@media (min-width: 900px) {
+  .tiktok-video{
+    max-width: min(var(--max-desktop-width), 22vw);
+  }
+}
+
